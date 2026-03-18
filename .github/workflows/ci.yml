@@ -19,17 +19,39 @@ jobs:
         with:
           python-version: "3.11"
 
+      - name: Set up Java (for Allure CLI)
+        uses: actions/setup-java@v4
+        with:
+          distribution: "temurin"
+          java-version: "17"
+
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install .[dev]
           playwright install --with-deps
 
+      - name: Install Allure CLI
+        run: |
+          set -euo pipefail
+          ALLURE_VERSION="2.29.0"
+          curl -fsSL -o "allure-${ALLURE_VERSION}.tgz" \
+            "https://github.com/allure-framework/allure2/releases/download/${ALLURE_VERSION}/allure-${ALLURE_VERSION}.tgz"
+          tar -xzf "allure-${ALLURE_VERSION}.tgz"
+          sudo mv "allure-${ALLURE_VERSION}" /opt/allure
+          sudo ln -sf /opt/allure/bin/allure /usr/local/bin/allure
+          allure --version
+
       - name: Run tests
         env:
           ENV: ci
         run: |
           pytest
+
+      - name: Generate Allure HTML report
+        if: always()
+        run: |
+          allure generate reports/allure-results -o reports/allure-report --clean
 
       - name: Upload HTML report
         if: always()
@@ -44,4 +66,11 @@ jobs:
         with:
           name: allure-results
           path: reports/allure-results
+
+      - name: Upload Allure HTML report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-report
+          path: reports/allure-report
 
