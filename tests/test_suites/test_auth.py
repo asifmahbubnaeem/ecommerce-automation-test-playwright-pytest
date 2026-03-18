@@ -1,17 +1,17 @@
-import re
-
 import pytest
-from playwright.sync_api import Page, expect
+from playwright.sync_api import Page
 
 from tests.fixtures import data_loader
+from tests.config import site
 from tests.pages.login_page import LoginPage
+from tests.utils.url_assertions import expect_on
 
 
 def test_login_success_standard_user(page: Page):
     user = data_loader.get_user("standard_user")
     login_page = LoginPage(page)
     login_page.login(user["username"], user["password"])
-    expect(page).to_have_url(re.compile("inventory"))
+    expect_on(page, "inventory")
 
 
 @pytest.mark.parametrize("scenario", data_loader.get_invalid_login_scenarios())
@@ -36,7 +36,7 @@ def test_logout_and_session_persistence(page: Page):
     page.click("#react-burger-menu-btn")
     with page.expect_navigation():
         page.click("#logout_sidebar_link")
-    expect(page).to_have_url(re.compile(r"^https://www\.saucedemo\.com/?$"))
-    page.goto("https://www.saucedemo.com/inventory.html")
-    expect(page).to_have_url(re.compile(r"^https://www\.saucedemo\.com/?$"))
+    expect_on(page, "logged_out")
+    page.goto(site.route("inventory"))
+    expect_on(page, "logged_out")
 

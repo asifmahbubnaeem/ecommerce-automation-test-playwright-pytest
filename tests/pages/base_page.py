@@ -1,3 +1,4 @@
+import re
 from pathlib import Path
 from typing import Optional
 
@@ -20,7 +21,8 @@ class BasePage:
         self.page.goto(url)
 
     def expect_url_contains(self, fragment: str) -> None:
-        expect(self.page).to_have_url(lambda url: fragment in url)
+        # Playwright expects a string or regex, not a predicate function.
+        expect(self.page).to_have_url(re.compile(rf".*{re.escape(fragment)}.*"))
 
     def screenshot(self, name: str, subdir: str = "screenshots") -> Path:
         reports_dir = Path("reports") / subdir

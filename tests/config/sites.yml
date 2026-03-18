@@ -1,0 +1,19 @@
+ # Site-specific configuration (URLs, routes, and URL matchers).
+ #
+ # Select active site with:
+ #   E2E_SITE=saucedemo  (or SITE=saucedemo)
+ #
+ # You can still override the resolved base_url with BASE_URL.
+ saucedemo:
+   base_url: "https://www.saucedemo.com"
+   routes:
+     login: "/"
+     inventory: "/inventory.html"
+     cart: "/cart.html"
+     checkout_step_one: "/checkout-step-one.html"
+     checkout_step_two: "/checkout-step-two.html"
+     checkout_complete: "/checkout-complete.html"
+   url_patterns:
+     # Use `{base_url}` placeholder (auto escaped) when you want exact matches.
+     logged_out: "^{base_url}/?$"
+     inventory: "^{base_url}/inventory\\.html$"

@@ -20,11 +20,14 @@ def load_app_config() -> AppConfig:
     load_dotenv(project_root / ".env", override=False)
 
     env_name = os.getenv("ENV", "dev")
+    site_name = os.getenv("E2E_SITE") or os.getenv("SITE") or "saucedemo"
 
     base_cfg = _load_yaml(project_root / "tests" / "config" / "base.yml")
     env_cfg = _load_yaml(project_root / "tests" / "config" / f"{env_name}.yml")
+    sites_cfg = _load_yaml(project_root / "tests" / "config" / "sites.yml")
+    site_cfg = (sites_cfg.get(site_name) or {}) if isinstance(sites_cfg, dict) else {}
 
-    merged: Dict[str, Any] = {**base_cfg, **env_cfg}
+    merged: Dict[str, Any] = {**base_cfg, **env_cfg, **site_cfg}
 
     # Allow env vars to override specific keys
     base_url = os.getenv("BASE_URL")
@@ -36,6 +39,7 @@ def load_app_config() -> AppConfig:
         merged["headless"] = headless.lower() == "true"
 
     merged["env_name"] = env_name
+    merged["site_name"] = site_name
 
     return AppConfig(**merged)
 
