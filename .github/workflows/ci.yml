@@ -80,13 +80,13 @@ jobs:
           path: reports/allure-report
 
       - name: Upload Pages artifact (Allure report)
-        if: always() && github.ref == 'refs/heads/main'
+        if: always() && (github.ref == 'refs/heads/main' || github.event_name == 'pull_request')
         uses: actions/upload-pages-artifact@v3
         with:
           path: reports/allure-report
 
   deploy-allure-report:
-    if: always() && github.ref == 'refs/heads/main'
+    if: always() && (github.ref == 'refs/heads/main' || github.event_name == 'pull_request')
     needs: tests
     runs-on: ubuntu-latest
     environment:
