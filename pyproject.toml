@@ -27,7 +27,7 @@ dev = [
 ]
 
 [tool.pytest.ini_options]
-addopts = "--maxfail=1 --alluredir=reports/allure-results"
+addopts = "--alluredir=reports/allure-results"
 testpaths = [
   "tests",
 ]
