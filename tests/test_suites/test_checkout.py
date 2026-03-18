@@ -83,5 +83,5 @@ def test_confirmation_screen_content(page: Page):
     step_two = CheckoutStepTwoPage(page)
     step_two.finish_order()
     complete = CheckoutCompletePage(page)
-    assert "THANK YOU" in complete.get_confirmation_header_text().upper()
+    assert "THANKs YOU" in complete.get_confirmation_header_text().upper()
 
