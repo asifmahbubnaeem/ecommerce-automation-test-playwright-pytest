@@ -1,0 +1,28 @@
+{
+  "standard_user": {
+    "username": "standard_user",
+    "password": "secret_sauce",
+    "description": "Standard user with normal behaviour"
+  },
+  "locked_out_user": {
+    "username": "locked_out_user",
+    "password": "secret_sauce",
+    "description": "User that is locked out and cannot log in"
+  },
+  "problem_user": {
+    "username": "problem_user",
+    "password": "secret_sauce",
+    "description": "User that triggers UI glitches such as broken images"
+  },
+  "performance_glitch_user": {
+    "username": "performance_glitch_user",
+    "password": "secret_sauce",
+    "description": "User with slower responses to exercise smart waits"
+  },
+  "error_user": {
+    "username": "error_user",
+    "password": "secret_sauce",
+    "description": "User that surfaces application error states"
+  }
+}
+

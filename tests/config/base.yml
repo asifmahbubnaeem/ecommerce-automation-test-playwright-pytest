@@ -1,0 +1,6 @@
+base_url: "https://www.saucedemo.com"
+timeout: 10000
+headless: true
+trace: "retain-on-failure"
+video: "retain-on-failure"
+

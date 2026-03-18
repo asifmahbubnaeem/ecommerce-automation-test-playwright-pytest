@@ -1,0 +1,4 @@
+headless: true
+trace: "on"
+video: "retain-on-failure"
+

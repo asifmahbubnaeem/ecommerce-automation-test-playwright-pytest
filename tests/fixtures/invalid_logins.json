@@ -1,0 +1,28 @@
+[
+  {
+    "username": "standard_user",
+    "password": "wrong_password",
+    "description": "Wrong password"
+  },
+  {
+    "username": "",
+    "password": "secret_sauce",
+    "description": "Empty username"
+  },
+  {
+    "username": "standard_user",
+    "password": "",
+    "description": "Empty password"
+  },
+  {
+    "username": "",
+    "password": "",
+    "description": "Both fields empty"
+  },
+  {
+    "username": "' OR '1'='1",
+    "password": "secret_sauce",
+    "description": "SQL injection style username"
+  }
+]
+
