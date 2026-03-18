@@ -1,0 +1,43 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ecommerce-test-automation"
+version = "0.1.0"
+description = "Production-grade UI test automation framework for SauceDemo using Python and Playwright."
+requires-python = ">=3.11"
+dependencies = [
+  "pytest>=8.0.0",
+  "pytest-playwright>=0.5.0",
+  "playwright>=1.49.0",
+  "pytest-html>=4.1.0",
+  "allure-pytest>=2.13.5",
+  "pytest-xdist>=3.6.0",
+  "python-dotenv>=1.0.1",
+  "pydantic>=2.7.0",
+  "pyyaml>=6.0.0",
+  "faker>=35.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "black>=24.0.0",
+  "ruff>=0.6.0",
+]
+
+[tool.pytest.ini_options]
+addopts = "--maxfail=1 --alluredir=reports/allure-results"
+testpaths = [
+  "tests",
+]
+
+[tool.black]
+line-length = 100
+target-version = ["py311"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+select = ["E", "F", "W"]
+
