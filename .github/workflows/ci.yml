@@ -103,7 +103,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: github-pages-pr
-      url: ${{ steps.deployment.outputs.page_url_pr }}
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
