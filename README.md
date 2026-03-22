@@ -171,3 +171,40 @@ Pipeline behaviour:
   - Login failure with invalid credentials (wrong password, empty fields, SQL injection-like input): `test_login_failure_invalid_credentials` (data-driven from `invalid_logins.json`).
   - Locked-out user behaviour: `test_locked_out_user_behavior`.
   - Session persistence / logout behaviour: `test_logout_and_session_persistence`.
+ 
+
+- **2.2 Product Catalog**
+  - Product listing loads correctly (count, names, prices visible): `test_product_listing_loads_correctly`.
+  - Sorting by Name A→Z, Name Z→A, Price Low→High, Price High→Low: sorting tests in `test_catalog.py`.
+  - `problem_user` visual regression: `test_problem_user_image_mismatches` compares image `src` values between `standard_user` and `problem_user`.
+
+- **2.3 Shopping Cart**
+  - Add single item and verify cart badge updates: `test_add_single_item_updates_cart_badge`.
+  - Add multiple items and verify all appear in cart: `test_add_multiple_items_appear_in_cart`.
+  - Remove item and verify cart state: `test_remove_item_updates_cart`.
+  - Cart persists across navigation: `test_cart_persists_across_navigation`.
+
+- **2.4 Checkout Flow (End-to-End)**
+  - Complete full purchase with valid details: `test_complete_purchase_with_valid_details`.
+  - Checkout blocked when required fields missing: `test_checkout_blocked_when_required_fields_missing`.
+  - Verify order summary math: `test_order_summary_totals_are_correct` validates consistency between item total, tax, and final total.
+  - Verify confirmation screen: `test_confirmation_screen_content`.
+
+- **2.5 Performance & Resilience**
+  - `performance_glitch_user` login with smart waits: `test_performance_glitch_user_login_succeeds_with_smart_waits`.
+  - `error_user` – error selecting and removing products & broken sort issues
+
+### Intentional exclusions and extensions
+
+- Deep visual regression (pixel-by-pixel) is intentionally out of scope; we focus on functional `src` checks for `problem_user`.
+- Load testing and long-duration stability tests are not implemented here but can be layered on using the same page objects and fixtures.
+- API-level tests are not included but the structure allows them to be added alongside UI tests.
+
+## Quality Practices
+
+- **Linting/formatting**: `ruff` and `black` are configured via `pyproject.toml` (install with `pip install .[dev]`).
+- **Separation of concerns**: tests express business flows; page objects encapsulate UI details; config/data are externalised from tests.
+- **Flakiness mitigation**:
+  - Reliance on Playwright’s auto-wait capabilities.
+  - Explicit waits only where needed.
+  - No `time.sleep` used.
