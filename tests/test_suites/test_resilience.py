@@ -85,6 +85,7 @@ def test_error_user_third_and_fourth_products_add_to_cart_does_not_work(page: Pa
     assert inventory.get_cart_badge_count() == 0
 
 
+
 def test_check_fail_error_user_third_and_fourth_products_add_to_cart_does_not_work(page: Page):
     inventory = _login_as_error_user(page)
     assert inventory.get_product_count() >= 4
@@ -95,6 +96,6 @@ def test_check_fail_error_user_third_and_fourth_products_add_to_cart_does_not_wo
 
     first_product_button.click()
     second_product_button.click()
-
+    
     assert inventory.get_cart_badge_count() == 2
 
