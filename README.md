@@ -151,6 +151,7 @@ CI is implemented using **GitHub Actions** in `.github/workflows/ci.yml`.
 Pipeline behaviour:
 
 - Triggers on `push` and `pull_request` to `main`.
+- Set the ruleset for the default/main branch so that only users with 'Admin role' can direct push to main branch
 - Uses `actions/setup-python` to provision Python 3.11.
 - Installs project (and dev) dependencies and Playwright browsers.
 - Runs `pytest` with:
