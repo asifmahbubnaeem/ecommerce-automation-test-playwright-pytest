@@ -110,4 +110,4 @@ def test_duplicate_another_check_for_pr_merge_error_user(page: Page):
     first_product_button.click()
     second_product_button.click()
     
-    assert inventory.get_cart_badge_count() == 0
+    assert inventory.get_cart_badge_count() == 2
