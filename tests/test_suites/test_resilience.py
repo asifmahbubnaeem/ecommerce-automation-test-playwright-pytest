@@ -84,3 +84,17 @@ def test_error_user_third_and_fourth_products_add_to_cart_does_not_work(page: Pa
 
     assert inventory.get_cart_badge_count() == 0
 
+
+def test_tc_fail_error_user_third_and_fourth_products_add_to_cart_does_not_work(page: Page):
+    inventory = _login_as_error_user(page)
+    assert inventory.get_product_count() >= 4
+    assert inventory.get_cart_badge_count() == 0
+
+    first_product_button = page.locator(INVENTORY_ITEM).nth(0).locator("button")
+    second_product_button = page.locator(INVENTORY_ITEM).nth(1).locator("button")
+
+    first_product_button.click()
+    second_product_button.click()
+
+    assert inventory.get_cart_badge_count() == 0
+
