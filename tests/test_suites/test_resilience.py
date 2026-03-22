@@ -86,7 +86,7 @@ def test_error_user_third_and_fourth_products_add_to_cart_does_not_work(page: Pa
 
 
 
-def test_check_fail_error_user_third_and_fourth_products_add_to_cart_does_not_work(page: Page):
+def test_duplicate_check_for_pr_merge_error_user(page: Page):
     inventory = _login_as_error_user(page)
     assert inventory.get_product_count() >= 4
     assert inventory.get_cart_badge_count() == 0
