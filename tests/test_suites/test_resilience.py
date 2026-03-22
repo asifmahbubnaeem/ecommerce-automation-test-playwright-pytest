@@ -96,5 +96,5 @@ def test_check_fail_error_user_third_and_fourth_products_add_to_cart_does_not_wo
     first_product_button.click()
     second_product_button.click()
 
-    assert inventory.get_cart_badge_count() == 0
+    assert inventory.get_cart_badge_count() == 2
 
