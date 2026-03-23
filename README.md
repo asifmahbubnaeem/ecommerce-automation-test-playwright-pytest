@@ -111,6 +111,24 @@ cp .env.example .env
 ```
 
 ### Local setup [windows]
+```PowerShell
+git clone https://github.com/asifmahbubnaeem/ecommerce-automation-test-playwright-pytest.git
+cd ecommerce-automation-test-playwright-pytest/
+
+create virtual environment:
+python -m venv .venv
+
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+ .\.venv\Scripts\Activate.ps1
+
+
+python.exe -m pip install --upgrade pip
+playwright install
+
+cp .env.example .env
+```
+Execute Tests:
+```pytest```
 
 We can adjust:
 
