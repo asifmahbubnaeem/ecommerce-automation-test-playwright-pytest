@@ -91,7 +91,7 @@ git clone https://github.com/asifmahbubnaeem/ecommerce-automation-test-playwrigh
 cd ecommerce-automation-test-playwright-pytest/
 
 python3 -m venv .venv
-source .venv/bin/activate  # Windows: .venv\Scripts\activate
+source .venv/bin/activate 
 
 pip install --upgrade pip
 pip install .[dev]
@@ -123,8 +123,9 @@ Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 
 
 python.exe -m pip install --upgrade pip
-playwright install
-
+# Install Playwright browsers
+playwright install 
+# create local .env
 cp .env.example .env
 ```
 Execute Tests:
