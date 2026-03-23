@@ -110,7 +110,7 @@ Create a local `.env` based on the example:
 cp .env.example .env
 ```
 
-### Local setup [windows]
+### Local setup [windows Powershell]
 ```PowerShell
 git clone https://github.com/asifmahbubnaeem/ecommerce-automation-test-playwright-pytest.git
 cd ecommerce-automation-test-playwright-pytest/
