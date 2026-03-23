@@ -84,10 +84,10 @@ flowchart TD
 - `pip` and the `playwright` CLI (installed as part of dependencies)
 - Git
 
-### Local setup
+### Local setup [ubuntu]
 
 ```bash
-git clone git@github.com:asifmahbubnaeem/ecommerce-automation-test-playwright-pytest.git
+git clone https://github.com/asifmahbubnaeem/ecommerce-automation-test-playwright-pytest.git or git@github.com:asifmahbubnaeem/ecommerce-automation-test-playwright-pytest.git
 cd ecommerce-automation-test-playwright-pytest/
 
 python3 -m venv .venv
@@ -109,6 +109,8 @@ Create a local `.env` based on the example:
 ```bash
 cp .env.example .env
 ```
+
+### Local setup [windows]
 
 We can adjust:
 
