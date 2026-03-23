@@ -158,7 +158,11 @@ We can also selectively run suites, for example:
 pytest tests/test_suites/test_auth.py
 pytest tests/test_suites/test_catalog.py -k sort
 ```
-
+##To run & generate allure on windows
+ - Need to install java & update the PATH varaible
+ - Download Allure from [here](https://github.com/allure-framework/allure2/releases/download/2.38.1/allure-2.38.1.zip)
+   extract & update the PATH varaible
+ 
 ## Run locally to generate allure report
 **Commands**
   - `pytest --alluredir=reports/allure`
