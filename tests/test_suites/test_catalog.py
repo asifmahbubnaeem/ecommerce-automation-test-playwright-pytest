@@ -62,3 +62,9 @@ def test_problem_user_image_mismatches(page: Page):
         baseline_srcs, problem_srcs
     ), "Expected image src mismatches for problem_user"
 
+
+def test_problem_user_product_images_are_not_broken(page: Page):
+    problem_inventory = _login_as(page, "problem_user")
+    # Detect broken/missing images even when `src` values might not change.
+    problem_inventory.assert_product_images_loaded()
+

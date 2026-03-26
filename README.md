@@ -167,7 +167,7 @@ pytest tests/test_suites/test_catalog.py -k sort
 **Commands**
   - `pytest --alluredir=reports/allure`
   - `allure generate reports/allure -o reports/allure-report --clean`
-  - `allure serve reports/allure     # optional: opens in browser`
+  - `allure serve reports/allure`
 
 ## CI/CD Pipeline
 
@@ -203,6 +203,7 @@ Pipeline behaviour:
   - Product listing loads correctly (count, names, prices visible): `test_product_listing_loads_correctly`.
   - Sorting by Name A→Z, Name Z→A, Price Low→High, Price High→Low: sorting tests in `test_catalog.py`.
   - `problem_user` visual regression: `test_problem_user_image_mismatches` compares image `src` values between `standard_user` and `problem_user`.
+  - `problem_user` broken images: `test_problem_user_product_images_are_not_broken` asserts all product images load (`naturalWidth > 0`).
 
 - **2.3 Shopping Cart**
   - Add single item and verify cart badge updates: `test_add_single_item_updates_cart_badge`.
@@ -222,7 +223,7 @@ Pipeline behaviour:
 
 ### Intentional exclusions and extensions
 
-- Deep visual regression (pixel-by-pixel) is intentionally out of scope; we focus on functional `src` checks for `problem_user`.
+ - Deep visual regression (pixel-by-pixel) is intentionally out of scope; we focus on functional `src` checks and basic image-load health for `problem_user`.
 - Load testing and long-duration stability tests are not implemented here but can be layered on using the same page objects and fixtures.
 - API-level tests are not included but the structure allows them to be added alongside UI tests.
 

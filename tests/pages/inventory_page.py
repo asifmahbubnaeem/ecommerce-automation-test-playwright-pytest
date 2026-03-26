@@ -30,6 +30,31 @@ class InventoryPage(BasePage):
     def get_product_image_srcs(self) -> List[str]:
         return self.page.locator(self.INVENTORY_ITEM_IMG).evaluate_all("elements => elements.map(e => e.src)")
 
+    def wait_for_product_images_complete(self, timeout: int | None = None) -> None:
+        """
+        Wait until all product <img> elements report `complete === true`.
+        Broken images typically keep reporting `complete === true` with `naturalWidth === 0`.
+        """
+        self.page.wait_for_function(
+            """
+            () => {
+                const imgs = document.querySelectorAll('.inventory_item_img img');
+                return imgs.length > 0 && Array.from(imgs).every(i => i.complete);
+            }
+            """,
+            timeout=timeout or self.config.timeout,
+        )
+
+    def assert_product_images_loaded(self, timeout: int | None = None) -> None:
+        self.wait_for_product_images_complete(timeout=timeout)
+        natural_widths = self.page.locator(self.INVENTORY_ITEM_IMG).evaluate_all(
+            "elements => elements.map(e => e.naturalWidth)"
+        )
+        assert all(w > 0 for w in natural_widths), (
+            "Expected all product images to load (naturalWidth > 0). "
+            f"Got naturalWidth values: {natural_widths}"
+        )
+
     def sort_by(self, option_value: str) -> None:
         self.page.select_option(self.SORT_DROPDOWN, option_value)
 
