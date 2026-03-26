@@ -11,6 +11,8 @@ from tests.pages.login_page import LoginPage
 from tests.pages.inventory_page import InventoryPage
 
 
+
+
 @pytest.fixture(scope="session")
 def app_config() -> AppConfig:
     return load_app_config()
@@ -75,4 +77,4 @@ def pytest_runtest_makereport(item: pytest.Item, call: pytest.CallInfo):
         screenshots_dir.mkdir(parents=True, exist_ok=True)
         file_path = screenshots_dir / f"{item.name}.png"
         page.screenshot(path=str(file_path), full_page=True)
-
+        print(f"\n[screenshot] Failure screenshot saved: {file_path.resolve()}\n", flush=True)

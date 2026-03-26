@@ -21,6 +21,12 @@ def test_add_single_item_updates_cart_badge(page: Page):
     count = inventory_page.get_cart_badge_count()
     assert_cart_badge_count(count, 1)
 
+def test_intentional_fail_case_1(page: Page):
+    inventory_page = _login_and_go_to_inventory(page)
+    first_item_name = inventory_page.get_product_names()[0]
+    inventory_page.add_to_cart(first_item_name)
+    count = inventory_page.get_cart_badge_count()
+    assert_cart_badge_count(count, 2)
 
 def test_add_multiple_items_appear_in_cart(page: Page):
     inventory_page = _login_and_go_to_inventory(page)
