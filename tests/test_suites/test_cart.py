@@ -6,6 +6,7 @@ from tests.pages.inventory_page import InventoryPage
 from tests.pages.login_page import LoginPage
 from tests.utils.assertions import assert_cart_badge_count
 
+import pytest
 
 def _login_and_go_to_inventory(page: Page) -> InventoryPage:
     user = data_loader.get_user("standard_user")
@@ -21,6 +22,7 @@ def test_add_single_item_updates_cart_badge(page: Page):
     count = inventory_page.get_cart_badge_count()
     assert_cart_badge_count(count, 1)
 
+@pytest.mark.skip(reason="This test is intended to fail to show failure")
 def test_intentional_fail_case_1(page: Page):
     inventory_page = _login_and_go_to_inventory(page)
     first_item_name = inventory_page.get_product_names()[0]
