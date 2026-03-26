@@ -4,6 +4,7 @@ from tests.fixtures import data_loader
 from tests.pages.inventory_page import InventoryPage
 from tests.pages.login_page import LoginPage
 from tests.utils.url_assertions import expect_on
+import pytest
 
 ERROR_USER_SORT_ALERT_MESSAGE = (
     "Sorting is broken! This error has been reported to Backtrace."
@@ -84,6 +85,7 @@ def test_error_user_third_and_fourth_products_add_to_cart_does_not_work(page: Pa
 
     assert inventory.get_cart_badge_count() == 0
 
+@pytest.mark.skip(reason="This test is intended to fail to show failure")
 def test_intentional_fail_case_2(page: Page):
     inventory = _login_as_error_user(page)
     assert inventory.get_product_count() >= 4
@@ -110,6 +112,7 @@ def test_duplicate_check_for_pr_merge_error_user(page: Page):
     
     assert inventory.get_cart_badge_count() == 2
 
+@pytest.mark.skip(reason="This test is intended to fail to show failure")
 def test_intentional_fail_case_3(page: Page):
     inventory = _login_as_error_user(page)
     assert inventory.get_product_count() >= 4
