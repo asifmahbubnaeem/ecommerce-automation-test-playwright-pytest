@@ -38,6 +38,10 @@ def load_app_config() -> AppConfig:
     if headless is not None:
         merged["headless"] = headless.lower() == "true"
 
+    browser = os.getenv("BROWSER")
+    if browser:
+        merged["browser"] = browser.strip().lower()
+
     merged["env_name"] = env_name
     merged["site_name"] = site_name
 

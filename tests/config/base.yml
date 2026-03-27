@@ -1,5 +1,6 @@
 timeout: 10000
 headless: true
+browser: "chromium"
 trace: "retain-on-failure"
 video: "retain-on-failure"
 

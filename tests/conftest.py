@@ -27,7 +27,16 @@ def playwright_instance():
 @pytest.fixture(scope="session")
 def browser_context_factory(playwright_instance, app_config: AppConfig):
     def _factory() -> BrowserContext:
-        browser = playwright_instance.chromium.launch(headless=app_config.headless)
+        # Support Firefox and Chrome-family browsers through config/env.
+        if app_config.browser == "firefox":
+            browser = playwright_instance.firefox.launch(headless=app_config.headless)
+        elif app_config.browser in {"chrome", "msedge"}:
+            browser = playwright_instance.chromium.launch(
+                headless=app_config.headless,
+                channel=app_config.browser,
+            )
+        else:
+            browser = playwright_instance.chromium.launch(headless=app_config.headless)
         context = browser.new_context(
             base_url=str(app_config.base_url),
         )

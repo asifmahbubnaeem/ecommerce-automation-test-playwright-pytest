@@ -137,6 +137,7 @@ We can adjust:
 - `E2E_SITE` (or `SITE`) – select which ecommerce site config to run against (see `tests/config/sites.yml`).
 - `BASE_URL` – override base URL if needed (takes precedence over the selected site’s `base_url`).
 - `HEADLESS` – `true` or `false`.
+- `BROWSER` – browser engine/channel (`chromium`, `firefox`, `chrome`, `msedge`).
 
 ### Running tests locally
 
@@ -157,6 +158,13 @@ We can also selectively run suites, for example:
 ```bash
 pytest tests/test_suites/test_auth.py
 pytest tests/test_suites/test_catalog.py -k sort
+```
+
+Run with different browsers:
+
+```bash
+BROWSER=firefox pytest
+BROWSER=chrome pytest
 ```
 ##To run & generate allure on windows
  - Need to install java & update the PATH varaible
