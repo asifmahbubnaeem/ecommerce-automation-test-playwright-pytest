@@ -80,17 +80,29 @@ jobs:
           path: reports/allure-report
 
       - name: Upload Pages artifact (Allure report)
-        if: always() && github.ref == 'refs/heads/main'
+        if: always() && (github.ref == 'refs/heads/main' || github.event_name == 'pull_request')
         uses: actions/upload-pages-artifact@v3
         with:
           path: reports/allure-report
 
-  deploy-allure-report:
+  deploy-allure-report-main:
     if: always() && github.ref == 'refs/heads/main'
     needs: tests
     runs-on: ubuntu-latest
     environment:
       name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+  deploy-allure-report-pr:
+    if: always() && github.event_name == 'pull_request'
+    needs: tests
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages-pr
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Deploy to GitHub Pages
