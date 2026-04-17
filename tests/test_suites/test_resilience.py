@@ -124,5 +124,5 @@ def test_intentional_fail_case_3(page: Page):
     first_product_button.click()
     second_product_button.click()
     
-    assert inventory.get_cart_badge_count() == 3
+    assert inventory.get_cart_badge_count() == 5
 
